@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+  /* background-color: pink; */
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+  --title-duration: 500ms;
+  --sub-title-duration: 500ms;
+  --nav-duration: 200ms;
+  --btn-grow-duration: 200ms;
+  --scroll-down-duration: 200ms;
+
+  --sub-title-delay: calc(var(--title-duration)-200ms);
+  --nav-delay: calc(var(--sub-title-delay) + var(--sub-title-duration));
+  --btn-grow-delay: var(--nav-delay);
+  --scroll-down-delay: var(--nav-delay);
+}
+.header {
+  background-color: hsl(0, 0%, 30%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background-image: url(https://raw.githubusercontent.com/WebDevSimplified/Learn-CSS-Today/master/32-bootcamp-landing-page/before/img/header_image.jpg);
+  color: white;
+}
+.logo {
+  width: 3.5em;
+  height: 3.3em;
+  margin-left: 10px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background-color: rgb(54, 48, 48);
+}
+.nav-top {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  animation: nav-enter var(--nav-duration) var(--nav-delay) backwards;
+}
+.nav-list {
+  display: flex;
+  list-style: none;
+  font-size: 1.8em;
+  color: #d3e2e2;
+  margin: 18px 0;
+}
+.nav-list a {
+  margin-right: 0.7em;
+  text-decoration: none;
+  color: white;
+  transition: 100ms;
+}
+.nav-list a:hover {
+  background-color: #535c66;
+}
+.btn {
+  background-color: #4ed425;
+  border: none;
+  border-radius: 10000000px;
+  padding: 0em 0.2em;
+  cursor: pointer;
+}
+.btn-grow {
+  font-size: 1.6em;
+  text-decoration: none;
+  padding: 0.1em 0.3em;
+}
+.btn-grow:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px 1px black;
+}
+.header-title {
+  font-size: 3em;
+  animation: title-enter var(--title-duration);
+}
+.sub-title {
+  margin-bottom: 1em;
+  font-size: 1.4em;
+  animation: sub-title-enter var(--sub-title-duration) var(--sub-title-delay)
+    backwards;
+}
+
+.down-icon {
+  position: absolute;
+  bottom: 1em;
+  width: 2em;
+  animation: scroll-down-bounce 1s alternate infinite linear;
+}
+.section-title {
+  text-align: center;
+  font-size: 2.5em;
+}
+.carculam-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 450px));
+  justify-content: center;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+.carculam-item {
+  display: flex;
+  align-items: center;
+}
+.carculam-item img:hover {
+  animation: shake 100ms;
+}
+.carculam-item img {
+  width: 50px;
+  margin-right: 20px;
+}
+.section-accent {
+  background-color: #0c6392;
+  padding: 1.5rem;
+  margin: 4rem 0;
+}
+.pricing-card-container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  color: black;
+}
+.pricing-card {
+  padding: 1em;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 1.2em;
+  margin: 1.7em 0;
+  border-radius: 0.3em;
+  transition: transform 100ms;
+}
+.pricing-card:hover {
+  transform: scale(1.05);
+}
+.pricing-card.accent {
+  margin: 0;
+}
+.pricing-card:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  transform-origin: right;
+}
+.pricing-card:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  transform-origin: left;
+}
+.card-header {
+  font-size: 1.6em;
+  text-align: center;
+}
+.plan-name {
+  font-family: "Times New Roman", Times, serif;
+}
+.plan-price {
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+.plan-price::after {
+  content: "/mo";
+  color: grey;
+  font-size: medium;
+}
+.feature {
+  margin: 0.5em;
+}
+.feature.inactive {
+  text-decoration: line-through;
+  color: grey;
+}
+.feature:last-child {
+  margin-bottom: 0;
+}
+.form-section {
+  margin: 20px 0;
+}
+
+@keyframes scroll-down-bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes shake {
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes title-enter {
+  from {
+    transform: translateX(-100vw);
+  }
+}
+@keyframes sub-title-enter {
+  from {
+    transform: translateX(100vw);
+  }
+}
+@keyframes nav-enter {
+  from{
+    transform: translateY(-100%);
+  }
+}
+@media (max-width: 700px) {
+  .carculam-grid {
+    grid-template-columns: minmax(auto, 490px);
+    gap: 20px;
+  }
+
+  .pricing-card-container {
+    flex-wrap: wrap;
+    transform-origin: center;
+  }
+  .pricing-card.accent,
+  .pricing-card {
+    width: 100%;
+  }
+  .pricing-card:first-child,
+  .pricing-card:last-child {
+    transform-origin: center;
+    border-radius: 0.3em;
+  }
+  .feature {
+    text-align: center;
+  }
+}
+.form {
+  max-width: 80%;
+  margin: 0 auto;
+}
+.form label {
+  font-size: 1.5em;
+}
+.form input,
+.form textarea {
+  width: 100%;
+  font-size: 1.5em;
+  border: 0.1em solid black;
+  border-radius: 0.3em;
+  margin-bottom: 15px;
+  /* transition: border-color 100ms; */
+}
+input:focus,
+textarea:focus {
+  border-color: #0c6392;
+}
+.form textarea {
+  resize: vertical;
+}
+
+.btn-send {
+  text-align: end;
+}
+
+.btn-square {
+  background-color: lightblue;
+  padding: 6px 10px;
+  border-radius: 0.3em;
+  font-size: 1.3em;
+  margin-bottom: 3.5em;
+}
