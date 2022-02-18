@@ -4,3 +4,4 @@
    
    in this website their are some bug if you feel free to countribute to this repo you are welcome 
   
+     for better experience you should have to open in desktop mode
